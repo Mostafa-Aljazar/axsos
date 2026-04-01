@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Like Card</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="header">
+          <span class="username">Some User</span>
+          <span class="likes">3 like(s)</span>
+          <button class="like-btn" onclick="updateLikesText()">Like</button>
+        </div>
+
+        <p class="content">
+          This is some filler text, it can say anything we like
+        </p>
+      </div>
+
+      <div class="note">
+        Each time we click the "Like" button it should increase the number of
+        likes by "1"
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

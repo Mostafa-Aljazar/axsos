@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  background: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+}
+
+.card {
+  border: 2px solid black;
+  padding: 20px;
+  width: 300px;
+  background: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.likes {
+  font-size: 14px;
+}
+
+.like-btn {
+  background: #ffd966;
+  border: 2px solid black;
+  padding: 5px 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 black;
+}
+
+.note {
+  background: #ffe599;
+  padding: 20px;
+  width: 200px;
+  border: 1px solid #ccc;
+}
