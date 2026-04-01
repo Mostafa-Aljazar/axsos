@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DojoWeather</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <!-- NAVBAR -->
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <div class="navbar-container">
+        <h1>DojoWeather</h1>
+
+        <!-- Hamburger Icon for Mobile -->
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Cities Menu -->
+        <ul class="cities" id="citiesMenu">
+          <li onclick="loadWeather(this)">Burbank</li>
+          <li onclick="loadWeather(this)">Chicago</li>
+          <li onclick="loadWeather(this)">Dallas</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header container">
+      <h2>San Jose</h2>
+      <div>
+        <label>show temperature in</label>
+        <select id="tempSelect" onchange="convertTemp()">
+          <option value="c">°C</option>
+          <option value="f">°F</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- WEATHER CARDS -->
+    <div class="weather-container">
+      <div class="card">
+        <h3>Today</h3>
+        <img
+          src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/3af/bd5/67a/some_rain.png"
+          alt=""
+        />
+        <p>some rain</p>
+        <div class="temps">
+          <span class="high">24</span>
+          <span class="low">18</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Tomorrow</h3>
+        <img
+          src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/f02/2e8/6ba/some_sun.png"
+          alt=""
+        />
+        <p>some sun</p>
+        <div class="temps">
+          <span class="high">27</span>
+          <span class="low">19</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Friday</h3>
+        <img
+          src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/c08/360/2bb/some_clouds.png"
+          alt=""
+        />
+        <p>some clouds</p>
+        <div class="temps">
+          <span class="high">21</span>
+          <span class="low">16</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Saturday</h3>
+        <img
+          src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/f02/2e8/6ba/some_sun.png"
+          alt=""
+        />
+        <p>some sun</p>
+        <div class="temps">
+          <span class="high">26</span>
+          <span class="low">21</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie" id="cookieBox">
+      <img
+        src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/6ef/c41/f01/cookie.png"
+        alt=""
+      />
+
+      <div class="cookie-text">
+        <p class="cookie-title">Stop! Cookie time</p>
+        <p>
+          We use cookies (sadly not the edible ones) to personalize content and
+          ads, to provide social media features and to analyse our traffic.
+          <a href="#">Read more...</a>
+        </p>
+      </div>
+      <button onclick="acceptCookies()" class="cookie-btn">I Accept</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
