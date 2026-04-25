@@ -1,0 +1,32 @@
+1. What does `pip list` do?
+- It shows all installed packages in the current environment. When the virtual environment is active, the list is small and only includes project-related packages.
+
+2. What does `deactivate` do?
+- It turns off the virtual environment. After running it, the terminal switches back to the global Python environment.
+
+3. What is the difference when running `pip list` after deactivating the environment?
+- The list becomes larger because it shows globally installed packages instead of the isolated ones inside the virtual environment.
+
+4. How do you activate the virtual environment again?
+- On Windows, use: `call myEnvironments/py3Env/Scripts/activate`
+  On Mac, use: `source myEnvironments/py3Env/bin/activate`
+  This restores the isolated environment for your project.
+
+5. What happens when you run `pip install Django`?
+- It installs Django inside the environment. The terminal shows download progress, dependencies, and a success message.
+
+6. What does `pip freeze` do?
+- It lists all installed packages with exact versions in a format used for saving dependencies.
+
+7. What is the difference between `pip freeze` and `pip list`?
+- `pip list` shows packages in a simple readable format.
+  `pip freeze` shows exact versions formatted for a requirements file.
+
+8. What happens when you run `pip freeze > requirements.txt`?
+- It creates a file named requirements.txt in the current directory. The file contains all installed packages with their exact versions.
+
+9. What does `pip uninstall Django` do?
+- It removes Django from the environment after confirmation.
+
+10. What does `pip show Django` do?
+- It displays detailed information about Django such as version, location, and dependencies. If Django is not installed, it shows a warning.
