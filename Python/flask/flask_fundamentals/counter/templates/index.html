@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Counter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+      }
+
+      h1 {
+        font-size: 48px;
+        margin: 20px 0;
+      }
+
+      a {
+        display: inline-block;
+        margin: 10px 5px;
+        padding: 8px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+        background: #007bff;
+        color: #fff;
+      }
+
+      a:hover {
+        background: #0056b3;
+      }
+
+      form {
+        margin-top: 15px;
+      }
+
+      input {
+        padding: 8px;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 8px;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        background: #28a745;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Counter</h2>
+      <h1>{{ count }}</h1>
+
+      <a href="/add2">+2</a>
+      <a href="/reset">Reset</a>
+      <a href="/destroy_session">Destroy</a>
+
+      <form action="/increment" method="POST">
+        <input type="number" name="number" placeholder="Enter number" />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </body>
+</html>
