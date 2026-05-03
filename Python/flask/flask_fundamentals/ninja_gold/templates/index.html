@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninja Gold</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f4f4;
+      }
+      .header {
+        background: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+      .gold-box {
+        background: white;
+        padding: 10px 20px;
+        border: 2px solid #333;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .buildings {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .building {
+        background: white;
+        border: 2px solid #333;
+        width: 220px;
+        padding: 15px;
+        text-align: center;
+      }
+      .log {
+        background: white;
+        border: 2px solid #333;
+        min-height: 200px;
+        padding: 15px;
+        margin-top: 30px;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .green {
+        color: green;
+      }
+      .red {
+        color: red;
+      }
+      button {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Ninja Gold</div>
+
+    <div class="container">
+      <div class="gold-box">
+        <strong>Your Gold:</strong>
+        <input
+          type="text"
+          value="{{ gold }}"
+          readonly
+          style="width: 80px; text-align: center"
+        />
+      </div>
+
+      <div class="buildings">
+        <!-- Farm -->
+        <div class="building">
+          <h3>Farm</h3>
+          <p>(earns 10-20 golds)</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="farm" />
+            <button type="submit">Find Gold!</button>
+          </form>
+        </div>
+
+        <!-- Cave -->
+        <div class="building">
+          <h3>Cave</h3>
+          <p>(earns 5-10 golds)</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="cave" />
+            <button type="submit">Find Gold!</button>
+          </form>
+        </div>
+
+        <!-- House -->
+        <div class="building">
+          <h3>House</h3>
+          <p>(earns 2-5 golds)</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="house" />
+            <button type="submit">Find Gold!</button>
+          </form>
+        </div>
+
+        <!-- Casino -->
+        <div class="building">
+          <h3>Casino</h3>
+          <p>(earns/takes 0-50 golds)</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="casino" />
+            <button type="submit">Find Gold!</button>
+          </form>
+        </div>
+      </div>
+
+      <h3>Activities:</h3>
+      <div class="log">
+        {% for activity in activities %}
+        <p class="{{ activity.color }}">{{ activity.message }}</p>
+        {% endfor %} {% if not activities %}
+        <p>No activities yet...</p>
+        {% endif %}
+      </div>
+
+      <br />
+      <a href="/reset"><button>Reset Game</button></a>
+    </div>
+  </body>
+</html>
