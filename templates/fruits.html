@@ -6,9 +6,9 @@
 <body>
 
     <header>
-        <div class="navbar navbar-dark bg-dark box-shadow">
-          <div class="container d-flex justify-content-between">
-            <a href="#" class="navbar-brand d-flex align-items-center">
+        <div class="bg-dark box-shadow navbar navbar-dark">
+          <div class="d-flex justify-content-between container">
+            <a href="#" class="d-flex align-items-center navbar-brand">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
               <strong>Dojo Fruit Store</strong>
             </a>
@@ -21,18 +21,55 @@
   
       <main role="main">
   
-        <section class="jumbotron text-center">
+        <section class="text-center jumbotron">
           <div class="container">
             <h1 class="jumbotron-heading">Dojo Fruits</h1>
-            <p>Please figure out how to display the images here...</p>
+            <p>Check out all the amazing fruits we have available!</p>
 
             <p>
-              <a href="/" class="btn btn-primary my-2">Go back</a>
+              <a href="/" class="my-2 btn btn-primary">Go back</a>
             </p>
           </div>
         </section>
   
-      </main>
+        <div class="bg-light py-5 album">
+          <div class="container">
+            <div class="row">
+              <div class="mb-3 col-md-3">
+                <div class="card">
+                  <img src="{{ url_for('static', filename='img/strawberry.png') }}" alt="Strawberry" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-text">Strawberry</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 col-md-3">
+                <div class="card">
+                  <img src="{{ url_for('static', filename='img/raspberry.png') }}" alt="Raspberry" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-text">Raspberry</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 col-md-3">
+                <div class="card">
+                  <img src="{{ url_for('static', filename='img/apple.png') }}" alt="Apple" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-text">Apple</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 col-md-3">
+                <div class="card">
+                  <img src="{{ url_for('static', filename='img/blackberry.png') }}" alt="Blackberry" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-text">Blackberry</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       
 </body>
 </html>
