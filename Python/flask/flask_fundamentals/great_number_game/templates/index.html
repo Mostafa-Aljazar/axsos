@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Great Number Game</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+      }
+      .header {
+        background: #333;
+        color: white;
+        padding: 15px;
+        margin-bottom: 30px;
+        font-size: 18px;
+      }
+      .box {
+        width: 300px;
+        height: 150px;
+        margin: 30px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        border-radius: 8px;
+      }
+      .red {
+        background-color: #dc3545;
+      }
+      .green {
+        background-color: #28a745;
+      }
+      input {
+        padding: 12px;
+        font-size: 18px;
+        width: 150px;
+        text-align: center;
+        margin: 10px;
+      }
+      button {
+        padding: 12px 25px;
+        font-size: 16px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      .reset {
+        background: #6c757d;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Great Number Game</div>
+
+    <h2>Welcome to the Great Number Game!</h2>
+    <p>I am thinking of a number between 1 and 100</p>
+    <p>Take a guess!</p>
+
+    {% if message %}
+    <div class="box {{ color }}">{{ message }}</div>
+    {% endif %}
+
+    <form action="/guess" method="POST">
+      <input type="number" name="guess" min="1" max="100" required autofocus />
+      <br /><br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <br />
+    <a href="/reset"><button class="reset">Play Again</button></a>
+
+    {% if attempts %}
+    <p style="margin-top: 20px">Attempts: <strong>{{ attempts }}</strong></p>
+    {% endif %}
+  </body>
+</html>
