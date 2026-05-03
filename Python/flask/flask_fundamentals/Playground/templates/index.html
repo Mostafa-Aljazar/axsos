@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Page</title>
+
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        /* margin: auto 100px; */
+        gap: 20px;
+      }
+      .square {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h3 style="text-align: center">Welcome</h3>
+
+    <div class="container">
+      {% for x in range(0, times) %}
+      <div class="square" style="background-color:{{color_name}};"></div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

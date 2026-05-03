@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f0f0f0;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 100px ;
+}
+
+.navbar input {
+  width: 40%;
+  padding: 6px;
+}
+
+.navbar button {
+  background: purple;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* LAYOUT */
+.container {
+  display: flex;
+  padding: 20px 0;  
+  margin: 0 100px ;
+}
+
+/* VIDEO SECTION */
+.video-section {
+  flex: 3;
+}
+
+.video-section video {
+  width: 100%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+.channel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subscribe {
+  background: purple;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* SIDEBAR */
+.sidebar {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.side-video {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.side-video video {
+  width: 90px;
+  margin-right: 10px;
+  border: 2px solid purple;
+  cursor: pointer;
+}

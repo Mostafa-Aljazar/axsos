@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dojo Survey Index</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f4f4;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin: 15px 0 5px;
+        font-weight: bold;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      button {
+        background: #28a745;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/result" method="POST">
+        <label>Your Name:</label>
+        <input type="text" name="name" required />
+
+        <label>Dojo Location:</label>
+        <select name="location">
+          <option value="San Jose">San Jose</option>
+          <option value="Chicago">Chicago</option>
+          <option value="Burbank">Burbank</option>
+          <option value="Dallas">Dallas</option>
+        </select>
+
+        <label>Favorite Language:</label>
+        <select name="language">
+          <option value="Python">Python</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Java">Java</option>
+          <option value="C#">C#</option>
+        </select>
+
+        <label>Comment (optional):</label>
+        <textarea name="comment"></textarea>
+
+        <button type="submit">Button</button>
+      </form>
+    </div>
+  </body>
+</html>

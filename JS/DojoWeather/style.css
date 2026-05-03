@@ -1,0 +1,281 @@
+/* ====================== RESET ====================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background: #f8f9fa;
+}
+
+/* ====================== NAVBAR ====================== */
+.navbar {
+    background: #87b5e6;
+    color: white;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.navbar h1 {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Hamburger Menu Icon - Mobile Only */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect on hamburger */
+.hamburger:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Cities Menu */
+.cities {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.cities li {
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.cities li:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* ==================== MOBILE HOVER MENU (Only on Hamburger) ==================== */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .cities {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #87b5e6;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 999;
+    }
+
+    .cities li {
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 1.15rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .cities li:last-child {
+        border-bottom: none;
+    }
+
+    /* Show menu ONLY when hovering on the hamburger */
+    .hamburger:hover + .cities,
+    .hamburger:hover ~ .cities {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Desktop: hide hamburger and show horizontal menu */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+    .cities {
+        display: flex;
+    }
+}
+
+/* ====================== HEADER ====================== */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    border-bottom: 3px solid #333;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header h2 {
+    font-size: 2.1rem;
+}
+
+/* ====================== WEATHER CARDS ====================== */
+.weather-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background: #eee;
+    padding: 25px 15px;
+    text-align: center;
+    border-radius: 10px;
+    flex: 0 0 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 95px;
+    height: 95px;
+    object-fit: contain;
+    margin: 15px 0;
+}
+
+.card h3 {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+}
+
+.temps {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    font-size: 1.35rem;
+}
+
+.high {
+    color: #e63939;
+    font-weight: bold;
+}
+
+.low {
+    color: #457b9d;
+    font-weight: bold;
+}
+
+/* Cards Responsiveness */
+@media (min-width: 460px) {
+    .card {
+        flex: 0 0 calc(50% - 10px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        flex: 0 0 calc(25% - 15px);
+    }
+}
+
+/* ====================== COOKIE BANNER ====================== */
+.cookie {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+     background: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    border: 3px solid #333;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0 #333;
+    z-index: 2000;
+}
+
+.cookie img {
+    width: 65px;
+    flex-shrink: 0;
+}
+
+.cookie-text {
+    flex: 1;
+}
+
+.cookie-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.cookie-btn {
+    padding: 12px 28px;
+    background: #87b5e6;
+    border: 3px solid #333;
+    box-shadow: 3px 3px 0 #333;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.cookie-btn:hover {
+    background: #6a9cd1;
+    transform: translateY(-2px);
+}
+
+/* Cookie on small screens */
+@media (max-width: 600px) {
+    .cookie {
+        flex-direction: column;
+        text-align: center;
+        width: 95%;
+        max-width: 320px;
+    }
+    .cookie-btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.row div {
+    background-color: #5f9fa0;
+    color: #fff;
+    padding: 20px;
+}
+
+.row .col {
+    flex: 1;
+}
+
+.row .col-2 {
+    flex: 2;
+}
+
+.row .col-3 {
+    flex: 3;
+}

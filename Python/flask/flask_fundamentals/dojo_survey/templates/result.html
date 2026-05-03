@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submitted Info</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f4f4;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .info {
+        margin: 15px 0;
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 4px;
+      }
+      strong {
+        color: #333;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Submitted Info</h2>
+      <div class="info"><strong>Name:</strong> {{ name }}</div>
+      <div class="info"><strong>Dojo Location:</strong> {{ location }}</div>
+      <div class="info"><strong>Favorite Language:</strong> {{ language }}</div>
+      <div class="info">
+        <strong>Comment:</strong> {{ comment if comment else 'No comment
+        provided' }}
+      </div>
+      <a href="/"><button>Go Back</button></a>
+    </div>
+  </body>
+</html>

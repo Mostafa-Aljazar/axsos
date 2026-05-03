@@ -1,0 +1,33 @@
+
+* {
+    font-family: monospace;
+}
+
+h1{
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+ }
+
+h1 span{
+     color:#00ffff;
+}
+
+h2{
+    text-align: center;
+    background-color: #663399;
+    color: white;
+    font-weight: 500;
+    padding: 10px;
+    font-style: italic;
+}
+
+h3{
+   text-decoration: underline;
+   text-align: end;
+   background-color: #9fc5f8;
+   color: #2c245e;
+   font-weight: 500;
+    padding: 10px;
+}

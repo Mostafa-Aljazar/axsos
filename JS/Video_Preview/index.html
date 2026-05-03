@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VideoLab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <h2>VideoLab</h2>
+      <input type="text" placeholder="Search..." />
+      <button>Login</button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <!-- VIDEO SECTION -->
+      <div class="video-section">
+        <video
+          id="mainVideo"
+          controls
+          loop
+          poster="thumbnail.jpg"
+          onmouseover="playVideo()"
+          onmouseout="pauseVideo()"
+        >
+          <source
+            src="https://www.pexels.com/download/video/36448310/"
+            type="video/mp4"
+          />
+        </video>
+
+        <h3>Sample Video Title</h3>
+        <p>1.3K views • June 18, 2021</p>
+
+        <div class="channel">
+          <span>👤 Example User</span>
+          <button class="subscribe">Subscribe</button>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <h4>Up Next</h4>
+
+        <div class="side-video">
+          <video
+            muted
+            loop
+            onmouseover="this.play()"
+            onmouseout="
+              this.pause();
+              this.currentTime = 0;
+            "
+          >
+            <source
+              src="https://www.pexels.com/download/video/36244310/"
+              type="video/mp4"
+              controls
+            />
+          </video>
+          <p>Preview Video</p>
+        </div>
+
+        <div class="side-video">
+          <video
+            muted
+            loop
+            onmouseover="this.play()"
+            onmouseout="
+              this.pause();
+              this.currentTime = 0;
+            "
+          >
+            <source
+              src="https://www.pexels.com/download/video/33009788/"
+              type="video/mp4"
+            />
+          </video>
+          <p>Another Clip</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
