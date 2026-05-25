@@ -1,0 +1,65 @@
+-- MySQL Workbench Setup - CRUD Commands
+-- Assignment: MySQL Workbench Setup
+
+-- 1. Connect to a specific database
+USE books_db;
+
+-- 2. CREATE - Insert new records
+
+-- Insert a new user
+INSERT INTO users (name, email, password) 
+VALUES ('Ahmed Mohammed', 'ahmed@example.com', 'password123');
+
+-- Insert a new book
+INSERT INTO books (title, author, description) 
+VALUES ('The Little Prince', 'Antoine de Saint-Exupery', 'A wonderful story about friendship and life');
+
+-- Insert a favorite book for a user
+INSERT INTO favorite_books (users_id, books_id) 
+VALUES (1, 1);
+
+-- 3. READ - Query data (SELECT)
+
+-- Show all users
+SELECT * FROM users;
+
+-- Show all books
+SELECT * FROM books;
+
+-- Show all favorite books
+SELECT * FROM favorite_books;
+
+-- Show users ordered by name
+SELECT id, name, email FROM users ORDER BY name ASC;
+
+-- Show all favorite books for a specific user
+SELECT users.name, books.title, books.author
+FROM users
+JOIN favorite_books ON users.id = favorite_books.users_id
+JOIN books ON favorite_books.books_id = books.id
+WHERE users.id = 1;
+
+-- 4. UPDATE - Update existing records
+
+-- Update user name
+UPDATE users 
+SET name = 'Ahmed Mohammed Ali' 
+WHERE email = 'ahmed@example.com';
+
+-- Update book description
+UPDATE books 
+SET description = 'A beautiful philosophical novel' 
+WHERE title = 'The Little Prince';
+
+-- 5. DELETE - Delete records
+
+-- Remove a favorite book from a user's list
+DELETE FROM favorite_books 
+WHERE users_id = 1 AND books_id = 1;
+
+-- Delete a specific book
+DELETE FROM books 
+WHERE title = 'The Little Prince';
+
+-- Delete a user (Be careful!)
+-- DELETE FROM users WHERE email = 'test@example.com';
