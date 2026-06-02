@@ -1,6 +1,6 @@
 # Great Number Game
 
-A Django guessing game. The server picks a random number between 1 and 100 and stores it in the session. The user has up to 5 attempts to guess it. Winners can save their name to a leaderboard.
+A Django guessing game. The server picks a random number between 1 and 100 and stores it in the session. The user has up to 5 attempts to guess it. Winners are saved to a session-based leaderboard.
 
 ---
 
@@ -10,8 +10,8 @@ A Django guessing game. The server picks a random number between 1 and 100 and s
 |---|---|---|
 | `/` | GET | Show the game. Picks a secret number if none in session yet |
 | `/guess` | POST | Check the user's guess, update session, redirect to `/` |
-| `/play_again` | GET | Flush the session, start a new game |
-| `/save_winner` | POST | Save the winner's name to the database, redirect to leaderboard |
+| `/play_again` | GET | Reset the game while keeping the leaderboard |
+| `/save_winner` | POST | Save the winner's name to the session, redirect to leaderboard |
 | `/leaderboard` | GET | Show all winners sorted by fewest attempts |
 
 ---
@@ -27,7 +27,6 @@ Great_Number_Game/
 └── game/                         # The app
     ├── views.py
     ├── urls.py
-    ├── models.py                 # Winner model
     ├── templates/game/
     │   ├── index.html            # Game page
     │   └── leaderboard.html      # Leaderboard page
@@ -58,7 +57,7 @@ request.session['secret_number'] = random.randint(1, 100)
 request.session['attempts'] = 0
 ```
 
-Each guess is checked against the secret number in `views.py`:
+Each guess is checked in `views.py` and the result is stored in the session:
 
 ```python
 if user_guess == secret:
@@ -71,14 +70,43 @@ else:
     request.session['result'] = 'high'
 ```
 
-The template then shows a red box for too low/high, a green box for correct, or a lose message — all driven by the `result` session value.
+The template reads `result` from the context and shows a red box for too low/high, green for correct, or a lose message.
+
+### Session Keys
+
+| Key | Description |
+|---|---|
+| `secret_number` | The randomly picked number |
+| `attempts` | How many guesses the user has made |
+| `result` | Current game state: `None`, `'low'`, `'high'`, `'correct'`, `'lose'` |
+| `winners` | List of `{'name': ..., 'attempts': ...}` dicts for the leaderboard |
+
+### Saving Winners
+
+When the user wins and submits their name, it's appended to the `winners` list in the session — no database needed:
+
+```python
+winners = request.session.get('winners', [])
+winners.append({'name': name, 'attempts': attempts})
+request.session['winners'] = winners
+```
+
+When the user clicks "Play again", the `winners` list is preserved so the leaderboard survives across games.
+
+> **Note:** If you store a list in the session and then modify it in place (e.g. with `append()`), Django may not detect the change automatically. Always re-assign the key or call `request.session.save()` to make sure the change is persisted:
+>
+> ```python
+> request.session['my_list'] = []
+> request.session['my_list'].append("new item")
+> request.session.save()
+> ```
 
 ---
 
 ## Bonuses Completed
 
-- **Ninja:** Red box for too low/too high, green box for correct (matching the wireframe)
-- **Ninja:** User can keep guessing until correct (or until attempts run out)
-- **Ninja:** Attempts count is displayed on the win screen
-- **Sensei:** Max 5 attempts — shows "You Lose" with the secret number if all used up
-- **Sensei:** Winner can submit their name; leaderboard shows all winners sorted by fewest attempts
+- **Ninja:** Red box for too low/too high, green box for correct
+- **Ninja:** User keeps guessing until correct or out of attempts
+- **Ninja:** Attempts count shown on the win screen
+- **Sensei:** Max 5 attempts — shows "You Lose" with the secret number revealed
+- **Sensei:** Winner submits name; leaderboard shows all session winners sorted by fewest attempts

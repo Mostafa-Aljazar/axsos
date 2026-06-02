@@ -45,9 +45,8 @@ def save_winner(request):
     if 'winners' not in request.session:
         request.session['winners'] = []
 
-    winners = request.session['winners']
-    winners.append({'name': name, 'attempts': attempts})
-    request.session['winners'] = winners
+    request.session['winners'].append({'name': name, 'attempts': attempts})
+    request.session.save()
 
     request.session['secret_number'] = random.randint(1, 100)
     request.session['attempts'] = 0
