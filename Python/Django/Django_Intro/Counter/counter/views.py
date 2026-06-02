@@ -32,5 +32,7 @@ def increment_custom(request):
 
 
 def destroy_session(request):
-    request.session.flush()
+    del request.session['counter']    # clears a specific key
+    del request.session['visits']     # clears a specific key
+    # request.session.flush()
     return redirect('/')
