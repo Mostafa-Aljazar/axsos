@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+}
+
+.page {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 48px 56px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.page > p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+/* Feedback box */
+.feedback {
+  border-radius: 10px;
+  padding: 32px 24px;
+  margin: 28px 0 20px;
+}
+
+.feedback.red {
+  background-color: #c0392b;
+}
+
+.feedback.green {
+  background-color: #27ae60;
+}
+
+.feedback-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.attempts-info {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 16px;
+}
+
+/* Guess form */
+.guess-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.guess-form input {
+  width: 160px;
+  padding: 9px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 7px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.guess-form input:focus {
+  outline: none;
+  border-color: #4a6cf7;
+}
+
+.guess-form button {
+  padding: 9px 28px;
+  background: linear-gradient(135deg, #4a6cf7, #6a3de8);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.guess-form button:hover {
+  opacity: 0.88;
+}
+
+/* Winner form (inside green box) */
+.winner-form {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.winner-form input {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 180px;
+}
+
+.winner-form button {
+  padding: 8px 18px;
+  background: #fff;
+  color: #27ae60;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.winner-form button:hover {
+  background: #f0f0f0;
+}
+
+/* Play again / try again buttons */
+.play-again-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.play-again-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.play-again-link {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Leaderboard link at bottom of game page */
+.leaderboard-link {
+  display: inline-block;
+  margin-top: 28px;
+  color: #aaa;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.leaderboard-link:hover {
+  color: #4a6cf7;
+}
+
+/* Leaderboard table */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+
+.leaderboard-table th {
+  background: #f5f5f5;
+  padding: 10px 14px;
+  text-align: left;
+  color: #555;
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+}
+
+.leaderboard-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
+.leaderboard-table tr:first-child td {
+  color: #27ae60;
+  font-weight: 700;
+}
+
+.empty-msg {
+  color: #aaa;
+  margin: 28px 0;
+  font-size: 0.95rem;
+}

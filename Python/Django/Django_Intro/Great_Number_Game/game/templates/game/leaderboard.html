@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard — Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="page">
+      <h1>Leaderboard</h1>
+      <p>Sorted by fewest attempts</p>
+
+      {% if winners %}
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Attempts</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for winner in winners %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ winner.name }}</td>
+                <td>{{ winner.attempts }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty-msg">No winners yet. Be the first!</p>
+      {% endif %}
+
+      <a href="/" class="play-again-link">Play the game</a>
+    </div>
+  </body>
+</html>
