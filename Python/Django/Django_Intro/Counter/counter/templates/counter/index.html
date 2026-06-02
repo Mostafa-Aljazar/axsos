@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="card">
+      <h1>Counter</h1>
+
+      <div class="stat-block">
+        <p class="label">Page visits</p>
+        <p class="big-number">{{ visits }}</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-block">
+        <p class="label">Counter value</p>
+        <p class="big-number accent">{{ counter }}</p>
+      </div>
+
+      <div class="actions">
+        <a href="/increment_two" class="btn btn-primary">+2</a>
+
+        <form action="/increment_custom" method="POST" class="inline-form">
+          {% csrf_token %}
+          <input type="number" name="amount" value="1" min="1" />
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+      </div>
+
+      <a href="/destroy_session" class="btn btn-reset">Reset</a>
+    </div>
+  </body>
+</html>
