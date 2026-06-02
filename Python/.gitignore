@@ -1,4 +1,37 @@
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+
+# Virtual Environments
+venv/
+env/
+.env/
+django_venv/
+flask_venv/
+py4Env/
+envOOP/
+
+# Environment Variables
 .env
+.env.local
+.env.production
+
+# Django
+db.sqlite3
+*.log
+media/
+staticfiles/
+
+# Flask
+instance/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# OS
 .DS_Store
+Thumbs.db
