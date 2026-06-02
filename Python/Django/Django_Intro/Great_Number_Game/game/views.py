@@ -1,6 +1,5 @@
 import random
 from django.shortcuts import render, redirect
-from .models import Winner
 
 MAX_ATTEMPTS = 5
 
@@ -41,16 +40,29 @@ def guess(request):
 
 def save_winner(request):
     name = request.POST.get('name', 'Anonymous')
-    Winner.objects.create(name=name, attempts=request.session.get('attempts', 0))
-    request.session.flush()
+    attempts = request.session.get('attempts', 0)
+
+    if 'winners' not in request.session:
+        request.session['winners'] = []
+
+    winners = request.session['winners']
+    winners.append({'name': name, 'attempts': attempts})
+    request.session['winners'] = winners
+
+    request.session['secret_number'] = random.randint(1, 100)
+    request.session['attempts'] = 0
+    request.session['result'] = None
+
     return redirect('/leaderboard')
 
 
 def play_again(request):
+    winners = request.session.get('winners', [])
     request.session.flush()
+    request.session['winners'] = winners
     return redirect('/')
 
 
 def leaderboard(request):
-    winners = Winner.objects.all().order_by('attempts', 'created_at')
+    winners = sorted(request.session.get('winners', []), key=lambda w: w['attempts'])
     return render(request, 'game/leaderboard.html', {'winners': winners})
