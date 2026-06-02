@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninja Gold Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="page">
+
+      <div class="top-bar">
+        <div class="gold-display">
+          Your Gold: <span class="gold-amount">{{ gold }}</span>
+        </div>
+        {% if max_moves %}
+          <div class="progress-info">
+            Moves: {{ moves }} / {{ max_moves }} &nbsp;|&nbsp; Goal: {{ goal }} gold
+          </div>
+        {% endif %}
+        <div class="top-actions">
+          {% if not max_moves %}
+            <a href="/setup" class="btn btn-outline">Set Win Conditions</a>
+          {% endif %}
+          <a href="/reset" class="btn btn-reset">Reset</a>
+        </div>
+      </div>
+
+      {% if game_over == 'win' %}
+        <div class="banner banner-win">You won! You reached {{ goal }} gold in {{ moves }} moves!</div>
+      {% elif game_over == 'lose' %}
+        <div class="banner banner-lose">You lose! You ran out of moves. Final gold: {{ gold }}</div>
+      {% endif %}
+
+      <div class="locations">
+
+        <div class="location-card">
+          <h2>Farm</h2>
+          <p>(earns 10–20 gold)</p>
+          {% if not game_over %}
+            <form action="/process_money/farm" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-find">Find Gold!</button>
+            </form>
+          {% endif %}
+        </div>
+
+        <div class="location-card">
+          <h2>Cave</h2>
+          <p>(earns 10–20 gold)</p>
+          {% if not game_over %}
+            <form action="/process_money/cave" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-find">Find Gold!</button>
+            </form>
+          {% endif %}
+        </div>
+
+        <div class="location-card">
+          <h2>House</h2>
+          <p>(earns 10–20 gold)</p>
+          {% if not game_over %}
+            <form action="/process_money/house" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-find">Find Gold!</button>
+            </form>
+          {% endif %}
+        </div>
+
+        <div class="location-card">
+          <h2>Quest</h2>
+          <p>(earns/takes 0–50 gold)</p>
+          {% if not game_over %}
+            <form action="/process_money/quest" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-find">Find Gold!</button>
+            </form>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <div class="activities-section">
+        <h3>Activities:</h3>
+        <div class="activities-log">
+          {% for activity in activities %}
+            <p class="{{ activity.kind }}">{{ activity.msg }} ({{ activity.time }})</p>
+          {% empty %}
+            <p class="empty">No activities yet. Start exploring!</p>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
