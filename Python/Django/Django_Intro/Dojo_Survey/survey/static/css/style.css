@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 16px;
+}
+
+.box {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px 44px;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* ---------- form page ---------- */
+
+.box h1 {
+    font-size: 1.6rem;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.box .subtitle {
+    color: #888;
+    font-size: 0.88rem;
+    margin-bottom: 30px;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 12px;
+}
+
+.field label {
+    width: 148px;
+    flex-shrink: 0;
+    color: #444;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.field input[type="text"],
+.field select,
+.field textarea {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 7px;
+    font-size: 0.9rem;
+    color: #222;
+    background: #fafafa;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.field input[type="text"]:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.12);
+    background: #fff;
+}
+
+.field select {
+    cursor: pointer;
+    appearance: auto;
+}
+
+.field-textarea {
+    align-items: flex-start;
+}
+
+.field-textarea label {
+    padding-top: 10px;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
+button,
+.btn {
+    background: linear-gradient(135deg, #4a6cf7, #6a3de8);
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 7px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+button:hover,
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:active,
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ---------- result page ---------- */
+
+.result-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4a6cf7;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: 148px 1fr;
+    row-gap: 0;
+    margin-bottom: 28px;
+}
+
+.result-grid span {
+    padding: 10px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.result-grid span:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+.result-label {
+    color: #666;
+    font-weight: 600;
+}
+
+.result-value {
+    color: #222;
+}

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+    <div class="box">
+        <h2 class="result-heading">Submitted Info</h2>
+
+        <div class="result-grid">
+            <span class="result-label">Name:</span>
+            <span class="result-value">{{ name }}</span>
+
+            <span class="result-label">Dojo Location:</span>
+            <span class="result-value">{{ location }}</span>
+
+            <span class="result-label">Favorite Language:</span>
+            <span class="result-value">{{ language }}</span>
+
+            <span class="result-label">Comment:</span>
+            <span class="result-value">{{ comment }}</span>
+        </div>
+
+        <div class="btn-row">
+            <a href="/" class="btn">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
