@@ -1,0 +1,34 @@
+## Django Shell Queries — Users (Shell)
+## Run the shell with: python manage.py shell
+
+# --- Import the model ---
+from users_app.models import User
+
+# --- Create 3 new users ---
+User.objects.create(first_name="John", last_name="Smith", email_address="john@email.com", age=25)
+User.objects.create(first_name="Jane", last_name="Doe", email_address="jane@email.com", age=30)
+User.objects.create(first_name="Bob", last_name="Brown", email_address="bob@email.com", age=22)
+
+# --- Retrieve all users ---
+User.objects.all()
+
+# --- Retrieve the last user ---
+User.objects.last()
+
+# --- Retrieve the first user ---
+User.objects.first()
+
+# --- Change user with id=3 last name to Pancakes ---
+user = User.objects.get(id=3)
+user.last_name = "Pancakes"
+user.save()
+
+# --- Delete user with id=2 ---
+user = User.objects.get(id=2)
+user.delete()
+
+# --- Get all users sorted by first name (A → Z) ---
+User.objects.all().order_by('first_name')
+
+# BONUS: Get all users sorted by first name (Z → A) ---
+User.objects.all().order_by('-first_name')
