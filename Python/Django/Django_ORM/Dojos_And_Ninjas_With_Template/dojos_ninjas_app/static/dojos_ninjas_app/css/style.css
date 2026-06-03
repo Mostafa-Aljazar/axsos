@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 40px 16px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ── Forms row ── */
+.forms-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 32px 28px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #1a1a2e;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    min-width: 90px;
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.12);
+}
+
+.btn-wrap {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 9px 32px;
+    background: linear-gradient(135deg, #4a6cf7, #6a3de8);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #c5c5d3;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 1;
+}
+
+/* ── Dojos list ── */
+.dojos-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 32px 28px;
+}
+
+.dojos-card h2 {
+    margin-bottom: 20px;
+}
+
+.dojo-block {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+
+.dojo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dojo-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.ninja-count {
+    font-size: 0.85rem;
+    color: #777;
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+.delete-btn {
+    padding: 6px 16px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.delete-btn:hover {
+    opacity: 0.85;
+    transform: none;
+}
+
+.ninja-list {
+    list-style: none;
+    padding-left: 8px;
+}
+
+.ninja-list li {
+    padding: 4px 0;
+    font-size: 0.9rem;
+    color: #555;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.ninja-list li:last-child {
+    border-bottom: none;
+}
+
+.no-ninjas {
+    font-size: 0.88rem;
+    color: #bbb;
+    font-style: italic;
+}
+
+.empty-msg {
+    text-align: center;
+    color: #aaa;
+    padding: 20px 0;
+    font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+    .forms-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-group label {
+        min-width: unset;
+        text-align: left;
+    }
+}
