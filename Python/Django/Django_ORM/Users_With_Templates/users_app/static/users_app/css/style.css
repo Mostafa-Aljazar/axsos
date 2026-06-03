@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 40px 16px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px 36px;
+}
+
+/* ── Section titles ── */
+h2 {
+    text-align: center;
+    font-size: 1.7rem;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+}
+
+/* ── Table ── */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead tr {
+    background: linear-gradient(135deg, #4a6cf7, #6a3de8);
+    color: #fff;
+}
+
+thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background 0.15s;
+}
+
+tbody tr:hover {
+    background-color: #f5f0ff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+tbody tr:nth-child(even):hover {
+    background-color: #f5f0ff;
+}
+
+tbody td {
+    padding: 11px 16px;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+/* ── Divider ── */
+.divider {
+    border: none;
+    border-top: 2px solid #eee;
+    margin: 36px 0;
+}
+
+/* ── Form ── */
+.form-section h2 {
+    margin-bottom: 28px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 32px;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.form-group input {
+    padding: 9px 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.12);
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+    border-color: #e74c3c;
+}
+
+.btn-wrap {
+    text-align: center;
+    margin-top: 28px;
+}
+
+button {
+    padding: 10px 36px;
+    background: linear-gradient(135deg, #4a6cf7, #6a3de8);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+    .container {
+        padding: 28px 18px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
