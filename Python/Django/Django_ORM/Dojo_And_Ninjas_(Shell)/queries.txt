@@ -1,0 +1,53 @@
+## Django Shell Queries — Dojo & Ninjas
+## Run the shell with: python manage.py shell
+
+# --- Import the models ---
+from dojo_ninjas_app.models import Dojo, Ninja
+
+# --- Create 3 dojos ---
+Dojo.objects.create(name="Coding Dojo Seattle", city="Seattle", state="WA")
+Dojo.objects.create(name="Coding Dojo Chicago", city="Chicago", state="IL")
+Dojo.objects.create(name="Coding Dojo Dallas", city="Dallas", state="TX")
+
+# --- Delete the 3 dojos you just created ---
+Dojo.objects.all().delete()
+
+# --- Create 3 more dojos ---
+Dojo.objects.create(name="Coding Dojo Seattle", city="Seattle", state="WA")
+Dojo.objects.create(name="Coding Dojo Chicago", city="Chicago", state="IL")
+Dojo.objects.create(name="Coding Dojo Dallas", city="Dallas", state="TX")
+
+# --- Create 3 ninjas for the first dojo ---
+first_dojo = Dojo.objects.first()
+Ninja.objects.create(dojo=first_dojo, first_name="Alice", last_name="Green")
+Ninja.objects.create(dojo=first_dojo, first_name="Bob", last_name="White")
+Ninja.objects.create(dojo=first_dojo, first_name="Carol", last_name="Brown")
+
+# --- Create 3 ninjas for the second dojo ---
+second_dojo = Dojo.objects.all()[1]
+Ninja.objects.create(dojo=second_dojo, first_name="Dave", last_name="Black")
+Ninja.objects.create(dojo=second_dojo, first_name="Eve", last_name="Stone")
+Ninja.objects.create(dojo=second_dojo, first_name="Frank", last_name="Hill")
+
+# --- Create 3 ninjas for the third dojo ---
+third_dojo = Dojo.objects.last()
+Ninja.objects.create(dojo=third_dojo, first_name="Grace", last_name="Lee")
+Ninja.objects.create(dojo=third_dojo, first_name="Henry", last_name="Fox")
+Ninja.objects.create(dojo=third_dojo, first_name="Isla", last_name="Park")
+
+# --- Retrieve all ninjas from the first dojo ---
+Ninja.objects.filter(dojo=first_dojo)
+# or using related name:
+first_dojo.ninjas.all()
+
+# --- Retrieve all ninjas from the last dojo ---
+Ninja.objects.filter(dojo=third_dojo)
+# or using related name:
+third_dojo.ninjas.all()
+
+# --- Retrieve the last ninja's dojo ---
+last_ninja = Ninja.objects.last()
+last_ninja.dojo
+
+# --- Create a new dojo (after adding desc field) ---
+Dojo.objects.create(name="Coding Dojo LA", city="Los Angeles", state="CA", desc="Brand new dojo on the west coast")
