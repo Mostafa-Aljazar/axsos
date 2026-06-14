@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+    <link rel="stylesheet" href="{% static 'books_authors_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/books">Books</a>
+        <a href="/authors">Authors</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>{{ book.title }}</h1>
+            <div class="detail-meta">
+                <p><strong>ID:</strong> {{ book.id }}</p>
+                <p><strong>Description:</strong> {{ book.desc }}</p>
+            </div>
+
+            <h2>Authors</h2>
+            <ul class="tag-list">
+                {% for author in book.authors.all %}
+                <li>{{ author.first_name }} {{ author.last_name }}</li>
+                {% empty %}
+                <li class="empty-note">No authors yet.</li>
+                {% endfor %}
+            </ul>
+
+            {% if authors_not_on_book %}
+            <form action="/books/{{ book.id }}/add_author" method="POST">
+                {% csrf_token %}
+                <div class="inline-form">
+                    <select name="author_id">
+                        {% for author in authors_not_on_book %}
+                        <option value="{{ author.id }}">{{ author.first_name }} {{ author.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+            {% else %}
+            <p class="empty-note">All authors are already linked to this book.</p>
+            {% endif %}
+
+            <a href="/books" class="back-link">← Back to Books</a>
+        </div>
+    </div>
+</body>
+</html>
