@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+nav {
+    background-color: #1a252f;
+    padding: 14px 32px;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+nav a:hover {
+    background-color: #2c3e50;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    color: #1a252f;
+    margin-bottom: 16px;
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 28px 32px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 28px;
+}
+
+/* ── Form ── */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccd3db;
+    border-radius: 7px;
+    font-size: 14px;
+    background: #fafbfc;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #27ae60;
+    background: #fff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* ── Buttons ── */
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-success  { background: #27ae60; color: #fff; }
+.btn-success:hover  { background: #219a52; }
+
+.btn-danger   { background: #e74c3c; color: #fff; }
+.btn-danger:hover   { background: #c0392b; }
+
+.btn-secondary { background: #ecf0f1; color: #2c3e50; }
+.btn-secondary:hover { background: #dde3ea; }
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* ── Table ── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead th {
+    background: #f4f6f9;
+    color: #555;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #e0e6ed;
+}
+
+tbody tr {
+    border-bottom: 1px solid #edf0f4;
+    transition: background 0.15s;
+}
+
+tbody tr:hover { background: #f7f9fc; }
+
+tbody td {
+    padding: 12px 16px;
+    color: #444;
+}
+
+.remove-link {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.remove-link:hover { text-decoration: underline; }
+
+/* ── Error box ── */
+.error-box {
+    background: #fdf2f2;
+    border: 1px solid #f5c6c6;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+}
+
+.error-box ul { list-style: none; }
+
+.error-box li {
+    color: #c0392b;
+    font-size: 13px;
+    padding: 3px 0;
+}
+
+.error-box li::before {
+    content: '✕  ';
+    font-weight: 700;
+}
+
+/* ── Confirm delete page ── */
+.confirm-box p {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.confirm-box strong {
+    color: #1a252f;
+}
