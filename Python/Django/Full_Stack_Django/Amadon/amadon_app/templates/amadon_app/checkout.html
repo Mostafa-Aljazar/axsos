@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Amadon Checkout</title>
+    <link rel="stylesheet" href="{% static 'amadon_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/amadon/">Amadon Store</a>
+    </nav>
+
+    <div class="container">
+        <div class="card checkout-card">
+            <h1>Thank you for your business!</h1>
+
+            {% if last_order %}
+            <p>We charged your credit card for <strong>${{ last_order.total }}</strong>.</p>
+            {% endif %}
+
+            <p>
+                You have ordered <strong>{{ total_quantity }}</strong> items so far
+                and spent <strong>${{ total_spent }}</strong> with Amadon.com!
+            </p>
+
+            <a href="/amadon/" class="go-back">Go back</a>
+        </div>
+    </div>
+</body>
+</html>
