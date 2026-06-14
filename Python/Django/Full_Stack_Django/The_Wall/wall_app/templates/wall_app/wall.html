@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodingDojo Wall</title>
+    <link rel="stylesheet" href="{% static 'wall_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">CodingDojo Wall</span>
+        <div class="nav-right">
+            <span class="welcome">Welcome {{ request.session.user_name }}</span>
+            <a href="/logout" class="log-off">log off</a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        {% if messages %}
+        <div class="flash-box">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Post a message -->
+        <div class="card post-card">
+            <h3>Post a message</h3>
+            <form action="/wall/post_message" method="POST">
+                {% csrf_token %}
+                <textarea name="message" placeholder="Write something..."></textarea>
+                <button type="submit" class="btn btn-primary">Post a message</button>
+            </form>
+        </div>
+
+        <!-- All messages -->
+        {% for msg in wall_messages %}
+        <div class="card message-card">
+            <div class="message-header">
+                <strong>{{ msg.user.first_name }} {{ msg.user.last_name }}</strong>
+                <span class="date"> - {{ msg.created_at|date:"N jS Y" }}</span>
+
+                {% if msg.user.id == request.session.user_id %}
+                <form action="/wall/delete_message/{{ msg.id }}" method="POST" class="delete-form">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">✕ delete</button>
+                </form>
+                {% endif %}
+            </div>
+
+            <p class="message-body">{{ msg.message }}</p>
+
+            <!-- Comments -->
+            {% for comment in msg.comments.all %}
+            <div class="comment">
+                <strong>{{ comment.user.first_name }} {{ comment.user.last_name }}</strong>
+                <span class="date"> - {{ comment.created_at|date:"N jS Y" }}</span>
+                <p>{{ comment.comment }}</p>
+            </div>
+            {% endfor %}
+
+            <!-- Post a comment -->
+            <div class="comment-form">
+                <p class="comment-label">Post a comment</p>
+                <form action="/wall/post_comment/{{ msg.id }}" method="POST">
+                    {% csrf_token %}
+                    <textarea name="comment" placeholder="Write a comment..."></textarea>
+                    <button type="submit" class="btn btn-comment">Post a comment</button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <div class="card empty-card">
+            <p>No messages yet. Be the first to post!</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</body>
+</html>
