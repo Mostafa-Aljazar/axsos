@@ -1,10 +1,11 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Great Number Game</title>
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
@@ -14,43 +15,59 @@
       <p>Take a guess!</p>
 
       {% if result == 'low' %}
-        <div class="feedback red">
-          <p class="feedback-text">Too low!</p>
-          <p class="attempts-info">{{ remaining }} guess{{ remaining|pluralize:" ,es" }} remaining</p>
-        </div>
+      <div class="feedback red">
+        <p class="feedback-text">Too low!</p>
+        <p class="attempts-info">
+          {{ remaining }} guess{{ remaining|pluralize:" ,es" }} remaining
+        </p>
+      </div>
 
       {% elif result == 'high' %}
-        <div class="feedback red">
-          <p class="feedback-text">Too high!</p>
-          <p class="attempts-info">{{ remaining }} guess{{ remaining|pluralize:" ,es" }} remaining</p>
-        </div>
+      <div class="feedback red">
+        <p class="feedback-text">Too high!</p>
+        <p class="attempts-info">
+          {{ remaining }} guess{{ remaining|pluralize:" ,es" }} remaining
+        </p>
+      </div>
 
       {% elif result == 'correct' %}
-        <div class="feedback green">
-          <p class="feedback-text">{{ secret_number }} was the number!</p>
-          <p class="attempts-info">You got it in {{ attempts }} attempt{{ attempts|pluralize }}!</p>
-          <form action="/save_winner" method="POST" class="winner-form">
-            {% csrf_token %}
-            <input type="text" name="name" placeholder="Enter your name" required />
-            <button type="submit">Save Score</button>
-          </form>
-          <a href="/play_again" class="play-again-link">Play again</a>
-        </div>
+      <div class="feedback green">
+        <p class="feedback-text">{{ secret_number }} was the number!</p>
+        <p class="attempts-info">
+          You got it in {{ attempts }} attempt{{ attempts|pluralize }}!
+        </p>
+        <form action="/save_winner" method="POST" class="winner-form">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+          <button type="submit">Save Score</button>
+        </form>
+        <a href="/play_again" class="play-again-link">Play again</a>
+      </div>
 
       {% elif result == 'lose' %}
-        <div class="feedback red">
-          <p class="feedback-text">You lose!</p>
-          <p class="attempts-info">The number was {{ secret_number }}</p>
-          <a href="/play_again" class="play-again-btn">Try again</a>
-        </div>
-      {% endif %}
-
-      {% if result != 'correct' and result != 'lose' %}
-        <form action="/guess" method="POST" class="guess-form">
-          {% csrf_token %}
-          <input type="number" name="guess" min="1" max="100" placeholder="Your guess" required />
-          <button type="submit">Submit</button>
-        </form>
+      <div class="feedback red">
+        <p class="feedback-text">You lose!</p>
+        <p class="attempts-info">The number was {{ secret_number }}</p>
+        <a href="/play_again" class="play-again-btn">Try again</a>
+      </div>
+      {% endif %} {% if result != 'correct' and result != 'lose' %}
+      <form action="/guess" method="POST" class="guess-form">
+        {% csrf_token %}
+        <input
+          type="number"
+          name="guess"
+          min="1"
+          max="100"
+          placeholder="Your guess"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
       {% endif %}
 
       <a href="/leaderboard" class="leaderboard-link">View Leaderboard</a>

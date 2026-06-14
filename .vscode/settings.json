@@ -1,0 +1,17 @@
+{
+  "i18n-ally.localesPaths": [
+    "Python/Django/django_venv/Lib/site-packages/django/conf/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/messages",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/admin/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/admindocs/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/auth/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/contenttypes/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/gis/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/flatpages/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/humanize/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/postgres/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/redirects/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/sessions/locale",
+    "Python/Django/django_venv/Lib/site-packages/django/contrib/sites/locale"
+  ]
+}
