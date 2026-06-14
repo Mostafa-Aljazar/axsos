@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Show {{ show.id }}</title>
+    <link rel="stylesheet" href="{% static 'shows_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/shows">TV Shows</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <a href="/shows" class="back-link">Go Back</a>
+            <h1>Edit Show {{ show.id }}</h1>
+
+            {% if messages %}
+            <div class="error-box">
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <form action="/shows/{{ show.id }}/update" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" value="{{ show.title }}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Network</label>
+                        <input type="text" name="network" value="{{ show.network }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type="date" name="release_date" value="{{ show.release_date|date:'Y-m-d' }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description <span style="color:#aaa;font-weight:400;">(optional, min 10 chars)</span></label>
+                    <textarea name="description">{{ show.description }}</textarea>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="/shows/{{ show.id }}" class="btn btn-secondary">Go to Show</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

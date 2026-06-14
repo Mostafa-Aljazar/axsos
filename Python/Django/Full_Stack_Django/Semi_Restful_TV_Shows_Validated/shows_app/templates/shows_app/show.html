@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ show.title }}</title>
+    <link rel="stylesheet" href="{% static 'shows_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/shows">TV Shows</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <a href="/shows" class="back-link">Go Back</a>
+            <h1>TV Show {{ show.id }}</h1>
+
+            <div class="detail-row"><strong>Title:</strong> {{ show.title }}</div>
+            <div class="detail-row"><strong>Network:</strong> {{ show.network }}</div>
+            <div class="detail-row"><strong>Release Date:</strong> {{ show.release_date|date:"M j, Y" }}</div>
+            <div class="detail-row"><strong>Description:</strong> {{ show.description|default:"—" }}</div>
+            <div class="detail-row"><strong>Last Updated:</strong> {{ show.updated_at|date:"F j, Y g:i a" }}</div>
+
+            <div class="actions">
+                <a href="/shows/{{ show.id }}/edit" class="btn btn-secondary">Edit</a>
+                <form action="/shows/{{ show.id }}/destroy" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
