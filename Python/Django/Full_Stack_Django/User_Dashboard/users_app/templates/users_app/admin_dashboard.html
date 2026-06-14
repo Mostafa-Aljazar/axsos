@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard — Test App</title>
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Test App</span>
+        <a href="/dashboard" class="nav-link">Dashboard</a>
+        <a href="/users/edit" class="nav-link">Profile</a>
+        <a href="/logout" class="nav-link nav-right log-off">Log off</a>
+    </nav>
+
+    <div class="page">
+        <div class="card">
+            <div class="table-header">
+                <h2>Manage Users</h2>
+                <a href="/users/new" class="btn btn-primary btn-sm">Add new</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>User Level</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in all_users %}
+                    <tr>
+                        <td>{{ u.id }}</td>
+                        <td><a href="/users/show/{{ u.id }}" class="user-link">{{ u.first_name }} {{ u.last_name }}</a></td>
+                        <td>{{ u.email }}</td>
+                        <td>{{ u.created_at|date:"M jS, Y" }}</td>
+                        <td>
+                            {% if u.user_level == 9 %}
+                            <span class="badge-admin">admin</span>
+                            {% else %}
+                            <span class="badge-normal">normal</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="/users/edit/{{ u.id }}" class="action-link">edit</a>
+                            {% if u.id != user.id %}
+                            <a href="#" class="action-link danger" onclick="confirmRemove({{ u.id }}, '{{ u.first_name }} {{ u.last_name }}'); return false;">remove</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Confirmation modal -->
+    <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-box">
+            <p id="confirmMsg">Are you sure?</p>
+            <div class="confirm-actions">
+                <form id="removeForm" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Yes, remove</button>
+                </form>
+                <button class="btn btn-secondary" onclick="closeConfirm()">No, cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmRemove(id, name) {
+            document.getElementById('confirmMsg').textContent = 'Are you sure you want to remove ' + name + '?';
+            document.getElementById('removeForm').action = '/users/remove/' + id;
+            document.getElementById('confirmOverlay').classList.add('active');
+        }
+        function closeConfirm() {
+            document.getElementById('confirmOverlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

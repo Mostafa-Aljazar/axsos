@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home — Test App</title>
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Test App</span>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/signin" class="nav-link nav-right">Sign in</a>
+    </nav>
+
+    <div class="page">
+        <div class="card">
+            <h1>Welcome to the Test</h1>
+            <p class="home-intro">
+                We're going to build a cool application using a MVC framework!<br>
+                This application was built with the Village88 folks!
+            </p>
+            <a href="/register" class="btn btn-success">Start</a>
+
+            <div class="features">
+                <div class="feature">
+                    <h4>Manage Users</h4>
+                    <p>Using this application, you'll learn how to add, remove, and edit users for the application.</p>
+                </div>
+                <div class="feature">
+                    <h4>Leave messages</h4>
+                    <p>Users will be able to leave a message to another user using this application.</p>
+                </div>
+                <div class="feature">
+                    <h4>Edit User Information</h4>
+                    <p>Admins will be able to edit another user's information (email address, first name, last name, etc).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

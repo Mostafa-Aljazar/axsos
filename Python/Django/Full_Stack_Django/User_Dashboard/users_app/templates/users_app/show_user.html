@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ profile.first_name }} {{ profile.last_name }} — Test App</title>
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Test App</span>
+        <a href="/dashboard" class="nav-link">Dashboard</a>
+        <a href="/users/edit" class="nav-link">Profile</a>
+        <a href="/logout" class="nav-link nav-right log-off">Log off</a>
+    </nav>
+
+    <div class="page">
+        {% if messages %}
+        <div class="flash-box">
+            <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        <div class="two-col">
+            <!-- User Info + Wall -->
+            <div class="col-main card">
+                <h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
+                <div class="profile-info" style="margin-bottom:20px;">
+                    <p><strong>Registered at:</strong> {{ profile.created_at|date:"F jS, Y" }}</p>
+                    <p><strong>User ID:</strong> #{{ profile.id }}</p>
+                    <p><strong>Email address:</strong> {{ profile.email }}</p>
+                    {% if profile.description %}
+                    <p><strong>Description:</strong> {{ profile.description }}</p>
+                    {% endif %}
+                </div>
+
+                <h3>Leave a message for {{ profile.first_name }}</h3>
+                <form action="/users/show/{{ profile.id }}/message" method="POST" style="margin-bottom:20px;">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="content" placeholder="Write a message…"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Post</button>
+                </form>
+
+                {% for msg in wall_messages %}
+                <div class="message-item">
+                    <span class="message-sender">
+                        <a href="/users/show/{{ msg.sender.id }}">{{ msg.sender.first_name }} {{ msg.sender.last_name }}</a> wrote:
+                    </span>
+                    <span class="message-time">{{ msg.created_at|timesince }} ago</span>
+                    <p class="message-body">{{ msg.content }}</p>
+                </div>
+                {% empty %}
+                <p style="color:#aaa;font-size:13px;">No messages yet.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Edit Info (admin only) -->
+            {% if user.user_level == 9 %}
+            <div class="col-side card" style="flex:0 0 220px;">
+                <h3>Admin Actions</h3>
+                <a href="/users/edit/{{ profile.id }}" class="btn btn-secondary btn-sm" style="display:block;margin-bottom:8px;">Edit User Info</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

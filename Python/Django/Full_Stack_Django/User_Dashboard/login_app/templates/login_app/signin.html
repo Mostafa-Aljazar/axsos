@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In — Test App</title>
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Test App</span>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/signin" class="nav-link nav-right">Sign in</a>
+    </nav>
+
+    <div class="page">
+        <div class="card" style="max-width:380px; margin: 0 auto;">
+            {% if messages %}
+            <div class="flash-box">
+                <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+            </div>
+            {% endif %}
+
+            <h2>Signin</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Email Address:</label>
+                    <input type="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-success" style="width:100%;">Sign In</button>
+            </form>
+            <p style="margin-top:14px;font-size:13px;">
+                <a href="/register" style="color:#2980b9;">Don't have an account? Register.</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
