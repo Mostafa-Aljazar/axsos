@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Shows</title>
+    <link rel="stylesheet" href="{% static 'shows_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/shows">TV Shows</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>All Shows</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Network</th>
+                        <th>Release Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for show in shows %}
+                    <tr>
+                        <td>{{ show.id }}</td>
+                        <td>{{ show.title }}</td>
+                        <td>{{ show.network }}</td>
+                        <td>{{ show.release_date|date:"F j, Y" }}</td>
+                        <td class="table-actions">
+                            <a href="/shows/{{ show.id }}">Show</a> |
+                            <a href="/shows/{{ show.id }}/edit">Edit</a> |
+                            <form action="/shows/{{ show.id }}/destroy" method="POST" style="display:inline">
+                                {% csrf_token %}
+                                <button type="submit" class="del" style="background:none;border:none;cursor:pointer;color:#e74c3c;font-size:14px;font-weight:500;padding:0;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align:center;color:#aaa;padding:20px;">No shows yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="/shows/new" class="add-link">+ Add a New Show</a>
+        </div>
+    </div>
+</body>
+</html>

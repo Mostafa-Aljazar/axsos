@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a New Show</title>
+    <link rel="stylesheet" href="{% static 'shows_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/shows">TV Shows</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <a href="/shows" class="back-link">Go Back</a>
+            <h1>Add a New Show</h1>
+
+            <form action="/shows/create" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Network</label>
+                        <input type="text" name="network" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type="date" name="release_date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
