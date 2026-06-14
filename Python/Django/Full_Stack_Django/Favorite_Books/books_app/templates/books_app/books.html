@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorite Books</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Favorite Books</span>
+        <div class="nav-right">
+            <span class="welcome">Welcome, {{ user.first_name }}!</span>
+            <a href="/books/my_favorites" class="nav-link">My Favorites</a>
+            <a href="/logout" class="nav-link log-off">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        {% if messages %}
+        <div class="flash-box">
+            <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        <div class="main-layout">
+
+            <!-- Add a book -->
+            <div class="card add-card">
+                <h2>Add a Favorite Book</h2>
+                <form action="/books/add" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group"><label>Title</label><input type="text" name="title"></div>
+                    <div class="form-group"><label>Description</label><textarea name="desc"></textarea></div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+
+            <!-- All books -->
+            <div class="card books-card">
+                <h2>All Books</h2>
+                {% for book in all_books %}
+                <div class="book-row">
+                    <div>
+                        <a href="/books/{{ book.id }}" class="book-title">{{ book.title }}</a>
+                        <p class="book-meta">(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
+                        {% if user in book.users_who_like.all %}
+                        <p class="favorited-msg">this is one of your favorites</p>
+                        {% else %}
+                        <form action="/books/{{ book.id }}/favorite" method="POST" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="link-btn">Add to Favorites</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="empty">No books yet. Add the first one!</p>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

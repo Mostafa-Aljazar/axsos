@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Favorites</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Favorite Books</span>
+        <div class="nav-right">
+            <span class="welcome">Welcome, {{ user.first_name }}!</span>
+            <a href="/books" class="nav-link">All Books</a>
+            <a href="/logout" class="nav-link log-off">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="card" style="max-width:600px;">
+            <h2>{{ user.first_name }}'s Favorite Books</h2>
+            {% for book in user.liked_books.all %}
+            <div class="book-row">
+                <a href="/books/{{ book.id }}" class="book-title">{{ book.title }}</a>
+                <p class="book-meta">added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+            </div>
+            {% empty %}
+            <p class="empty">You haven't favorited any books yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

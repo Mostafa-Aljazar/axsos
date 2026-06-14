@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit {{ book.title }}</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Favorite Books</span>
+        <div class="nav-right">
+            <a href="/logout" class="nav-link log-off">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        {% if messages %}
+        <div class="flash-box">
+            <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        <div class="card" style="max-width:540px;">
+            <h2>Edit Book</h2>
+            <form action="/books/{{ book.id }}/update" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" value="{{ book.title }}">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="desc">{{ book.desc }}</textarea>
+                </div>
+                <div class="owner-actions">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="/books/{{ book.id }}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

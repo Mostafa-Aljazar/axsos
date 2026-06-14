@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">Favorite Books</span>
+        <div class="nav-right">
+            <span class="welcome">Welcome, {{ user.first_name }}!</span>
+            <a href="/logout" class="nav-link log-off">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        {% if messages %}
+        <div class="flash-box">
+            <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        <div class="main-layout">
+
+            <!-- Book details -->
+            <div class="card show-card">
+                <h2>{{ book.title }}</h2>
+                <p class="book-meta">Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+                <p class="book-meta">Added on: {{ book.created_at|date:"N jS, Y @ g:i a" }}</p>
+                <p class="book-meta">Last updated: {{ book.updated_at|date:"N jS, Y @ g:i a" }}</p>
+                <p class="desc-label">Description:</p>
+                <p class="desc-text">{{ book.desc }}</p>
+
+                {% if book.uploaded_by.id == request.session.user_id %}
+                <div class="owner-actions">
+                    <a href="/books/{{ book.id }}/edit" class="btn btn-secondary">Update</a>
+                    <form action="/books/{{ book.id }}/delete" method="POST" class="inline-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Users who like this book -->
+            <div class="card likers-card">
+                <h2>Users Who Like This Book:</h2>
+                <ul class="likers-list">
+                    {% for liker in book.users_who_like.all %}
+                    <li>
+                        {{ liker.first_name }} {{ liker.last_name }}
+                        {% if liker.id == request.session.user_id %}
+                        <form action="/books/{{ book.id }}/unfavorite" method="POST" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="link-btn unfav">Un-Favorite</button>
+                        </form>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                {% if user not in book.users_who_like.all %}
+                <form action="/books/{{ book.id }}/favorite" method="POST" class="inline-form">
+                    {% csrf_token %}
+                    <button type="submit" class="link-btn">Add to Favorites</button>
+                </form>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <a href="/books" class="back-link">← Back to all books</a>
+    </div>
+</body>
+</html>
