@@ -1,0 +1,152 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f4f8;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* ── Nav ── */
+nav {
+    background: #1a252f;
+    padding: 13px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.brand { color: #fff; font-size: 17px; font-weight: 700; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-link { color: #3498db; text-decoration: none; font-size: 13px; }
+.nav-link:hover { text-decoration: underline; }
+.log-off { color: #e74c3c; }
+
+/* ── Page ── */
+.page { max-width: 1000px; margin: 36px auto; padding: 0 20px; }
+
+/* ── Flash ── */
+.flash-box {
+    background: #fdf2f2;
+    border: 1px solid #f5c6c6;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+}
+.flash-box ul { list-style: none; }
+.flash-box li { color: #c0392b; font-size: 13px; padding: 2px 0; }
+.flash-box li::before { content: '✕  '; font-weight: 700; }
+
+/* ── Cards ── */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 24px 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-bottom: 20px;
+}
+h2 { color: #1a252f; font-size: 18px; margin-bottom: 18px; }
+h3 { color: #1a252f; font-size: 15px; margin-bottom: 12px; }
+
+/* ── Layout ── */
+.two-col { display: flex; gap: 24px; align-items: flex-start; }
+.col-main { flex: 1; }
+.col-side { flex: 0 0 280px; }
+.divider { width: 1px; background: #dde3ea; align-self: stretch; }
+
+/* ── Forms ── */
+.form-group { margin-bottom: 14px; }
+.form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #555;
+    margin-bottom: 5px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 9px 13px;
+    border: 1px solid #ccd3db;
+    border-radius: 7px;
+    font-size: 14px;
+    background: #fafbfc;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: #3498db; background: #fff; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.or-divider { text-align: center; color: #aaa; font-size: 12px; margin: 6px 0; }
+
+/* ── Buttons ── */
+.btn {
+    display: inline-block;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary   { background: #2980b9; color: #fff; }
+.btn-primary:hover   { background: #2471a3; }
+.btn-danger    { background: #e74c3c; color: #fff; }
+.btn-danger:hover    { background: #c0392b; }
+
+/* ── Inline delete button ── */
+.link-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+.link-btn:hover { color: #c0392b; }
+.inline-form { display: inline; }
+
+/* ── Review rows ── */
+.review-row { padding: 14px 0; border-bottom: 1px solid #edf0f4; }
+.review-row:last-child { border-bottom: none; }
+.review-text { font-size: 14px; color: #444; line-height: 1.55; margin-bottom: 4px; }
+.review-meta { font-size: 12px; color: #888; font-style: italic; }
+.review-meta a { color: #2980b9; text-decoration: none; }
+.review-meta a:hover { text-decoration: underline; }
+
+/* ── Stars ── */
+.stars { color: #f39c12; font-size: 15px; letter-spacing: 1px; }
+
+/* ── Book title link ── */
+.book-link { color: #2980b9; text-decoration: none; font-weight: 600; }
+.book-link:hover { text-decoration: underline; }
+
+/* ── Other books list ── */
+.book-list { list-style: none; }
+.book-list li { padding: 7px 0; border-bottom: 1px solid #edf0f4; font-size: 14px; }
+.book-list li:last-child { border-bottom: none; }
+
+/* ── Star rating input ── */
+.star-input { display: flex; align-items: center; gap: 8px; }
+.star-input input[type=number] { width: 70px; }
+
+/* ── Login panels ── */
+.panels { display: flex; gap: 28px; align-items: flex-start; }
+
+/* ── Profile ── */
+.profile-info { margin-bottom: 18px; }
+.profile-info p { font-size: 14px; color: #555; margin-bottom: 4px; }
+.profile-info strong { color: #1a252f; }
+
+/* ── Back link ── */
+.back-link { display: inline-block; margin-top: 8px; color: #2980b9; text-decoration: none; font-size: 13px; }
+.back-link:hover { text-decoration: underline; }
+.empty { color: #aaa; font-size: 13px; text-align: center; padding: 10px 0; }

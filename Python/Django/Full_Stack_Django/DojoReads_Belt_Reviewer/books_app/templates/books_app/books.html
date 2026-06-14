@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books Home — DojoReads</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">DojoReads</span>
+        <div class="nav-right">
+            <a href="/books/add" class="nav-link">Add Book and Review</a>
+            <a href="/logout" class="nav-link log-off">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="two-col">
+            <!-- Recent Reviews -->
+            <div class="col-main card">
+                <h2>Recent Book Reviews:</h2>
+                {% for review in recent_reviews %}
+                <div class="review-row">
+                    <a href="/books/{{ review.book.id }}" class="book-link">{{ review.book.title }}</a>
+                    <div class="stars">
+                        {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}{% endfor %}
+                    </div>
+                    <p class="review-text">
+                        <a href="/users/{{ review.reviewer.id }}" class="book-link" style="font-weight:400;">{{ review.reviewer.alias }}</a>
+                        says: {{ review.review }}
+                    </p>
+                    <p class="review-meta">Posted on {{ review.created_at|date:"F j, Y" }}</p>
+                </div>
+                {% empty %}
+                <p class="empty">No reviews yet. Be the first!</p>
+                {% endfor %}
+            </div>
+
+            <!-- Other Books with Reviews -->
+            <div class="col-side card">
+                <h2>Other Books with Reviews:</h2>
+                <ul class="book-list">
+                    {% for book in other_books %}
+                    <li><a href="/books/{{ book.id }}" class="book-link">{{ book.title }}</a></li>
+                    {% empty %}
+                    <li class="empty">No other books yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

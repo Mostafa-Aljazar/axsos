@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }} — DojoReads</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">DojoReads</span>
+        <div class="nav-right">
+            <a href="/books" class="nav-link">Home</a>
+            <a href="/logout" class="nav-link log-off">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        {% if messages %}
+        <div class="flash-box">
+            <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        <div class="two-col">
+            <!-- Reviews -->
+            <div class="col-main card">
+                <h2>{{ book.title }}</h2>
+                <p style="font-size:13px;color:#888;margin-bottom:18px;">Author: {{ book.author.name }}</p>
+
+                <h3>Reviews:</h3>
+                {% for review in reviews %}
+                <div class="review-row">
+                    <div class="stars">
+                        {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}{% endfor %}
+                    </div>
+                    <p class="review-text">
+                        <a href="/users/{{ review.reviewer.id }}" class="book-link" style="font-weight:400;">{{ review.reviewer.alias }}</a>
+                        says: {{ review.review }}
+                    </p>
+                    <p class="review-meta">
+                        Posted on {{ review.created_at|date:"F j, Y" }}
+                        {% if review.reviewer.id == user.id %}
+                        &nbsp;·&nbsp;
+                        <form action="/reviews/{{ review.id }}/delete" method="POST" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="link-btn">Delete this Review</button>
+                        </form>
+                        {% endif %}
+                    </p>
+                </div>
+                {% empty %}
+                <p class="empty">No reviews yet.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Add a Review -->
+            <div class="col-side card">
+                <h3>Add a Review:</h3>
+                <form action="/books/{{ book.id }}/review" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="review" placeholder="Write your review…"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="star-input">
+                            <input type="number" name="rating" min="1" max="5" value="3">
+                            <span style="font-size:13px;color:#888;">stars</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </div>
+
+        <a href="/books" class="back-link">← Back to all books</a>
+    </div>
+</body>
+</html>

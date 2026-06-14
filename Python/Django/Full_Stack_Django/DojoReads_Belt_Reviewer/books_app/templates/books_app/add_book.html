@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book and Review — DojoReads</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">DojoReads</span>
+        <div class="nav-right">
+            <a href="/books" class="nav-link">Home</a>
+            <a href="/logout" class="nav-link log-off">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        {% if messages %}
+        <div class="flash-box">
+            <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        <div class="card" style="max-width:560px;">
+            <h2>Add a New Book Title and a Review:</h2>
+            <form action="/books/add" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Book Title</label>
+                    <input type="text" name="title">
+                </div>
+                <div class="form-group">
+                    <label>Author — Choose from the list:</label>
+                    <select name="author_id">
+                        <option value="">-- Select an existing author --</option>
+                        {% for author in authors %}
+                        <option value="{{ author.id }}">{{ author.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <p class="or-divider">— or add a new author —</p>
+                <div class="form-group">
+                    <input type="text" name="new_author" placeholder="New author name">
+                </div>
+                <div class="form-group">
+                    <label>Review</label>
+                    <textarea name="review"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="star-input">
+                        <input type="number" name="rating" min="1" max="5" value="3">
+                        <span style="font-size:13px;color:#888;">stars</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Book and Review</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

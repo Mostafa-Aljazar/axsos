@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ profile.alias }} — DojoReads</title>
+    <link rel="stylesheet" href="{% static 'books_app/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <span class="brand">DojoReads</span>
+        <div class="nav-right">
+            <a href="/books" class="nav-link">Home</a>
+            <a href="/books/add" class="nav-link">Add Book and Review</a>
+            <a href="/logout" class="nav-link log-off">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="card" style="max-width:620px;">
+            <h2>User Reviews</h2>
+            <div class="profile-info">
+                <p><strong>User Alias:</strong> {{ profile.alias }}</p>
+                <p><strong>Name:</strong> {{ profile.name }}</p>
+                <p><strong>Email:</strong> {{ profile.email }}</p>
+                <p><strong>Total Reviews:</strong> {{ reviews|length }}</p>
+            </div>
+
+            <h3>Posted Reviews on the following books:</h3>
+            {% for review in reviews %}
+            <div class="review-row">
+                <a href="/books/{{ review.book.id }}" class="book-link">{{ review.book.title }}</a>
+                <div class="stars">
+                    {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}{% endfor %}
+                </div>
+                <p class="review-text">{{ review.review }}</p>
+                <p class="review-meta">Posted on {{ review.created_at|date:"F j, Y" }}</p>
+            </div>
+            {% empty %}
+            <p class="empty">No reviews posted yet.</p>
+            {% endfor %}
+        </div>
+
+        <a href="/books" class="back-link">← Back to all books</a>
+    </div>
+</body>
+</html>
